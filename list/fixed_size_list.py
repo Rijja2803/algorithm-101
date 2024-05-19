@@ -26,7 +26,6 @@ class List:
     def insert_at(self,idx,w):
         if idx < 0 or idx >= self._i:
             return False
-
         if self._i < self._capacity:
             for j in range (self._i, idx, -1):
                 self._arr[j] = self._arr[j-1]
@@ -35,6 +34,9 @@ class List:
             return True
         return False
 
+    def get_ele(self,x):
+        if x>=0 and x< self._capacity:
+            return self._arr[x]
 
 
     def search(self, y) -> int:
@@ -100,6 +102,7 @@ print(l.is_full())
 ##print(l.remove_end())
 #print(l.insert(3))
 print(l.remove_at(1))
+print(l.get_ele(2))
 
 
 # print(l.search(1))

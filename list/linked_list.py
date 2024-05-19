@@ -7,6 +7,7 @@ class LinkedList:
     def __init__(self):
         self.head = None
 
+
     def insert(self,x):
         n = Node(x)
         if self.head is None:
@@ -21,6 +22,7 @@ class LinkedList:
         n=Node(x)
         n.next = self.head
         self.head = n
+
 
 
     def size(self):
@@ -69,8 +71,8 @@ l.insert(1)
 print(l.size())
 print(l.search(7))
 l.insert_begin(8)
-# l.remove(5)
-# l.remove(4)
+l.remove(5)
+l.remove(4)
 # l.remove(1)
 l.display()
 
