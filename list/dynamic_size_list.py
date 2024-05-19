@@ -1,11 +1,13 @@
 import array
+import ctypes
 
 
 class List:
     def __init__(self):
         self._capacity = 4
         self._i = 0
-        self._arr = array.array('i', [0] * self._capacity)
+        # self._arr = array.array('i', [0] * self._capacity)
+        self._arr = (self._capacity * ctypes.py_object)()
 
     def insert(self, x):
         if self.is_full():
