@@ -1,0 +1,97 @@
+import math
+class Node:
+    def __init__(self,key):
+        self.right = None
+        self.left = None
+        self.key =  key
+class Binarysearchtree:
+    def __init__(self):
+        self.root= None
+    def insert(self,x):
+        self.root= self.insert_node(self.root,x)
+    def insert_node(self,n,x):
+        if n is None:
+            return Node(x)
+        elif n.key> x:
+            n.left = self.insert_node(n.left,x)
+        else:
+            n.right = self.insert_node(n.right,x)
+        return n
+    def height(self):
+       return self.height_node(self.root)
+    
+    def height_node(self,n):
+        if n is None:
+            return 0
+        lh = self.height_node(n.left)
+        rh = self.height_node(n.right)
+        return max(lh,rh)+1
+    def size(self):
+        return self.size_node(self.root)
+    def size_node(self,n):
+        if n is None:
+            return 0
+        lh = self.size_node(n.left)
+        rh = self.size_node(n.right)
+        return max(lh,rh,n.key)
+    def max(self):
+        return self.max_node(self.root)
+    def max_node(self,n):
+        if n is None:
+            return -math.inf
+        lh = self.max_node(n.left)
+        rh = self.max_node(n.right)
+        return max(lh,rh,n.key)
+    def min(self):
+        return self.min_node(self.root)
+    def min_node(self,n):
+        if n is None:
+            return +math.inf
+        lh = self.min_node(n.left)
+        rh = self.min_node(n.right)
+        return min(lh,rh,n.key)
+    def delete(self,x):
+        return self.del_node(self.root,x)
+    def del_node(self,n,x):
+        if n == None:
+            return
+        elif n.key > x:
+            n.left = self.del_node(n.left,x)
+        elif n.key< x:
+            n.right = self.del_node(n.right,x)
+        else:
+            if n.right == None:
+                return n.left
+            elif n.left == None:
+                return n.right
+            else:
+                succ=self.getsucc(n.right,x)
+                n.key = succ
+                n.right=self.del_node(n.right,succ)
+        return n
+    def getsucc(curr,x):
+        if curr.left!= None:
+            curr=curr.left
+        return curr.key
+    def inorder(self):
+         self.inorder_node(self.root)
+         
+    def inorder_node(self,n):
+        if n != None:
+            self.inorder_node(n.left)
+            print(n.key,end='')
+            self.inorder_node(n.right)
+       
+        
+t=Binarysearchtree()
+t.insert(9)
+t.insert(6)            
+t.insert(5)
+t.insert(3)
+t.insert(1)
+t.delete(3)
+#print(t.size())
+t.inorder()
+#print(t.max())
+#print(t.min())
+#print(t.height())
